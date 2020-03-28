@@ -19,11 +19,15 @@ import {
   Count
 } from './styles/styles';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
+import { order } from './firebase/firebase';
+
 const nameSchema = yup.object().shape({
   name: yup.string().required('You must enter a Name!')
 });
 
 export default function Home() {
+  const history = useHistory();
   const [name, setName] = useState({
     name: ''
   });
@@ -31,14 +35,30 @@ export default function Home() {
     name: ''
   });
   const [data, setData] = useState({
+    id: '',
     name: '',
     size: '',
     sauce: '',
-    instructions: ''
+    instructions: '',
+    glutenFree: ''
   });
+  const reName = data.name.split(' ');
+  const newName = reName
+    .reverse()
+    .join('-')
+    .toLowerCase();
+  const newId = `${newName}/${Date.now()}`;
 
-  const prevDef = e => {
+  const formSub = e => {
     e.preventDefault();
+    const id = data.id,
+      name = data.name,
+      sauce = data.sauce,
+      top = data.toppings,
+      inst = data.instructions,
+      glut = data.glutenFree,
+      size = data.size;
+    order(top, sauce, name, id, inst, glut, size);
   };
   const validateChange = e => {
     yup
@@ -57,7 +77,7 @@ export default function Home() {
         });
       });
   };
-  const handleOnChange = e => {
+  const handleName = e => {
     e.persist();
     const createdName = {
       ...name,
@@ -69,18 +89,24 @@ export default function Home() {
     validateChange(e);
     setName(createdName);
   };
+  const routeToPizza = e => {
+    setTimeout(() => {
+      history.push('/onTheWay');
+    }, 300);
+    history.goBack();
+  };
 
   const getData = e => {
     setData({
       ...data,
+      id: newId,
       [e.target.name]: e.target.value
     });
-    console.log(e.target.name, e.target.value);
   };
 
   return (
     <>
-      <Form onSubmit={prevDef}>
+      <Form onSubmit={formSub}>
         <FormWrapper className='centered'>
           <H2>Create Your Pizza!</H2>
           <img src='./Pizza.jpg' alt="The 'Za" />
@@ -97,7 +123,7 @@ export default function Home() {
             name='name'
             id='name'
             placeholder='Name: '
-            onChange={handleOnChange}
+            onChange={handleName}
           />
         </FormWrapper>
         <FormWrapper>
@@ -340,7 +366,7 @@ export default function Home() {
 
         <Container>
           <Count type='number' id='count' />
-          <SubmitBtn type='submit'>
+          <SubmitBtn type='submit' onClick={routeToPizza}>
             <P>Add to Order!</P> <P>$17.99</P>
           </SubmitBtn>
         </Container>

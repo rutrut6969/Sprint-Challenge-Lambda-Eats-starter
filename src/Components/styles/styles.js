@@ -34,6 +34,7 @@ export const Form = styled.form`
   /* height: 2000px; */
   border: 1px solid black;
   margin: 0 auto;
+  margin-bottom: 10px;
 `;
 export const FormWrapper = styled.section`
   width: 100%;
@@ -62,6 +63,7 @@ export const FormDiv = styled.div`
   width: 98%;
   border-bottom: 1px solid rgba(211, 211, 211, 0.6);
   padding: 1%;
+  margin-left: -5px;
 `;
 export const H2 = styled.h2`
   font-size: 1.5rem;
@@ -106,6 +108,7 @@ export const BottomBorder = styled.div`
   width: 100%;
   height: 2px;
   background-color: rgba(0, 0, 0, 0.6);
+  margin-left: -8px;
 `;
 export const Container = styled.div`
   display: flex;

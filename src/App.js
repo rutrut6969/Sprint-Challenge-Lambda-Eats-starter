@@ -3,6 +3,7 @@ import Nav from './Components/Nav';
 import Home from './Components/Home';
 import Help from './Components/Help';
 import Form from './Components/Form';
+import OnTheWay from './Components/OnTheWay';
 import { Route, Switch } from 'react-router-dom';
 const App = () => {
   return (
@@ -14,6 +15,9 @@ const App = () => {
         </Route>
         <Route path='/form'>
           <Form />
+        </Route>
+        <Route path='/onTheWay'>
+          <OnTheWay />
         </Route>
         <Route path='/'>
           <Home />
