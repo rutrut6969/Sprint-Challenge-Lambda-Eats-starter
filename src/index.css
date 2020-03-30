@@ -5,9 +5,74 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  /* flex-flow: column wrap; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  justify-content: center;
+}
+#root a.link {
+  text-decoration: none;
+  border: 1px solid black;
+  margin: 0 5px;
+  padding: 5px 10px;
+  color: black;
+}
+#root a.link.home {
+  background-color: black;
+  color: white;
+}
+#root a.link.home:hover {
+  background-color: white;
+  color: black;
+}
+#root a.link.help:hover {
+  background-color: black;
+  color: white;
+}
+#root .centered {
+  align-items: center;
+  background-color: none;
+}
+#root a.formLink {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+  width: 100px;
+}
+#root a.formLink:hover {
+  background-color: black;
+  color: white;
+}
+
+#root .OTWHead {
+  display: flex;
+  width: 90%;
+  height: 400px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+#root .OTWGif {
+  display: flex;
+  flex-flow: column wrap;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 5%;
 }
